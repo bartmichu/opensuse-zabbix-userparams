@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-04-24T19:13:56Z</date>
+    <groups>
+        <group>
+            <name>Templates/Operating systems</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template opensuse-userparams by Zabbix agent active</template>
+            <name>Template opensuse-userparams by Zabbix agent active</name>
+            <groups>
+                <group>
+                    <name>Templates/Operating systems</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Reboot needed</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.needs-rebooting</key>
+                    <delay>10m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;0</expression>
+                            <name>System reboot is needed</name>
+                            <priority>WARNING</priority>
+                            <description>The reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Patches - all</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.patches.all</key>
+                    <delay>10m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>Patches available</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Patches - critical</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.patches.critical</key>
+                    <delay>10m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>Critical patches available</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Patches - security</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.patches.security</key>
+                    <delay>10m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>Security patches available</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Services restart</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.services.restart</key>
+                    <delay>10m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>Some services need to be restarted</name>
+                            <priority>INFO</priority>
+                            <description>There are running services which still use files and libraries deleted or updated by recent upgrades. They should be restarted to benefit from the latest updates.</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>

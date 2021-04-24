@@ -1,0 +1,10 @@
+Cmnd_Alias ZYPPER_PATCHCHECK = /usr/bin/zypper patch-check
+Cmnd_Alias ZYPPER_PS = /usr/bin/zypper ps -sss
+Cmnd_Alias ZYPPER_LISTPATCHES = /usr/bin/zypper list-patches --severity critical
+
+Defaults:zabbix !requiretty
+Defaults!ZYPPER_PATCHCHECK !logfile, !syslog, !pam_session
+Defaults!ZYPPER_PS !logfile, !syslog, !pam_session
+Defaults!ZYPPER_LISTPATCHES !logfile, !syslog, !pam_session
+
+zabbix ALL=(root) NOPASSWD: ZYPPER_PATCHCHECK, ZYPPER_PS, ZYPPER_LISTPATCHES
