@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2021-04-24T19:13:56Z</date>
+    <date>2021-05-10T11:45:18Z</date>
     <groups>
         <group>
             <name>Templates/Operating systems</name>
@@ -11,6 +11,7 @@
         <template>
             <template>Template opensuse-userparams by Zabbix agent active</template>
             <name>Template opensuse-userparams by Zabbix agent active</name>
+            <description>User parameters file at https://github.com/bartmichu/opensuse-zabbix-userparams</description>
             <groups>
                 <group>
                     <name>Templates/Operating systems</name>
