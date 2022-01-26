@@ -1,0 +1,134 @@
+zabbix_export:
+  version: '5.4'
+  date: '2022-01-26T12:35:00Z'
+  groups:
+    -
+      uuid: 846977d1dfed4968bc5f8bdb363285bc
+      name: 'Templates/Operating systems'
+  templates:
+    -
+      uuid: 1cfa73cfa1d340eab83163154ff5cf46
+      template: 'Template opensuse-userparams by Zabbix agent active'
+      name: 'Template opensuse-userparams by Zabbix agent active'
+      description: |
+        OpenSUSE system monitoring.
+        
+        Corresponding user parameters file and installation instructions can be found at https://github.com/bartmichu/opensuse-zabbix-userparams
+      groups:
+        -
+          name: 'Templates/Operating systems'
+      items:
+        -
+          uuid: 417a73e6d2f6451b98f6f25e6bfb21c9
+          name: 'Reboot needed'
+          type: ZABBIX_ACTIVE
+          key: opensuse-userparams.needs-rebooting
+          delay: 10m
+          history: 14d
+          trends: 60d
+          description: |
+            Check if the reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that a system reboot is needed.
+            
+            Expected return value:
+            1 - reboot is needed
+            2 - reboot is not needed.
+          valuemap:
+            name: TruthValue
+          triggers:
+            -
+              uuid: 9be704bfc0a34a88b066834833830927
+              expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.needs-rebooting)=1'
+              name: 'System reboot is needed'
+              priority: WARNING
+              description: 'The reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.'
+              manual_close: 'YES'
+        -
+          uuid: 697fd4f080f141a49ecbca095e674804
+          name: 'Patches - all'
+          type: ZABBIX_ACTIVE
+          key: opensuse-userparams.patches.all
+          delay: 12m
+          history: 14d
+          trends: 60d
+          description: |
+            Get the number of all applicable patches, including security patches. Requires sudo.
+            
+            Expected return value:
+            number indicating the number of patches.
+          triggers:
+            -
+              uuid: d8d0211e277f44a682413aeec160f482
+              expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.all)>0'
+              name: 'Package patches are available: {ITEM.VALUE} patch[es]'
+              priority: INFO
+              manual_close: 'YES'
+        -
+          uuid: beae4f68d7f44c71866c63534275225d
+          name: 'Patches - critical'
+          type: ZABBIX_ACTIVE
+          key: opensuse-userparams.patches.critical
+          delay: 10m
+          history: 14d
+          trends: 60d
+          description: |
+            Get the number of applicable critical patches. Requires sudo.
+            
+            Expected return value:
+            number indicating the number of critical patches.
+          triggers:
+            -
+              uuid: e6397de074a644ff91abf5394ce57ef7
+              expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.critical)>0'
+              name: 'Critical patches pending: {ITEM.VALUE} patch[es]'
+              priority: HIGH
+        -
+          uuid: 892a426a8e4845f399a1661fcad122df
+          name: 'Patches - security'
+          type: ZABBIX_ACTIVE
+          key: opensuse-userparams.patches.security
+          delay: 11m
+          history: 14d
+          trends: 60d
+          description: |
+            Get the number of applicable security patches. Requires sudo.
+            
+            Expected return value:
+            number indicating the number of security patches.
+          triggers:
+            -
+              uuid: 47f55e5d95ba419594d73932da3d09b2
+              expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.security)>0'
+              name: 'Security patches pending: {ITEM.VALUE} patch[es]'
+              priority: WARNING
+        -
+          uuid: a6d5f97c0d484be9a8212065173525e4
+          name: 'Services restart'
+          type: ZABBIX_ACTIVE
+          key: opensuse-userparams.services.restart
+          delay: 10m
+          history: 14d
+          trends: 60d
+          description: |
+            Get the number of services which are using meanwhile deleted files (e.g. shared libraries). These services may need to be restarted after an update. Requires sudo.
+            
+            Expected return value:
+            number indicating the number of services.
+          triggers:
+            -
+              uuid: 30d077982bcd40f694a3f864737e70fd
+              expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.services.restart)>0'
+              name: 'Some services need to be restarted: {ITEM.VALUE} service[s]'
+              priority: INFO
+              description: 'There are running services which still use files and libraries deleted or updated by recent upgrades. They should be restarted to benefit from the latest updates.'
+              manual_close: 'YES'
+      valuemaps:
+        -
+          uuid: 38f892ec8c254df080be4c093c7f676e
+          name: TruthValue
+          mappings:
+            -
+              value: '1'
+              newvalue: 'true'
+            -
+              value: '2'
+              newvalue: 'false'

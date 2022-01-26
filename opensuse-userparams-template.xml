@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>5.0</version>
-    <date>2021-05-10T11:45:18Z</date>
+    <version>5.4</version>
+    <date>2022-01-26T12:35:02Z</date>
     <groups>
         <group>
+            <uuid>846977d1dfed4968bc5f8bdb363285bc</uuid>
             <name>Templates/Operating systems</name>
         </group>
     </groups>
     <templates>
         <template>
+            <uuid>1cfa73cfa1d340eab83163154ff5cf46</uuid>
             <template>Template opensuse-userparams by Zabbix agent active</template>
             <name>Template opensuse-userparams by Zabbix agent active</name>
-            <description>User parameters file at https://github.com/bartmichu/opensuse-zabbix-userparams</description>
+            <description>OpenSUSE system monitoring.
+
+Corresponding user parameters file and installation instructions can be found at https://github.com/bartmichu/opensuse-zabbix-userparams</description>
             <groups>
                 <group>
                     <name>Templates/Operating systems</name>
@@ -19,15 +23,25 @@
             </groups>
             <items>
                 <item>
+                    <uuid>417a73e6d2f6451b98f6f25e6bfb21c9</uuid>
                     <name>Reboot needed</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.needs-rebooting</key>
                     <delay>10m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
+                    <description>Check if the reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that a system reboot is needed.
+
+Expected return value:
+1 - reboot is needed
+2 - reboot is not needed.</description>
+                    <valuemap>
+                        <name>TruthValue</name>
+                    </valuemap>
                     <triggers>
                         <trigger>
-                            <expression>{last()}&lt;&gt;0</expression>
+                            <uuid>9be704bfc0a34a88b066834833830927</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.needs-rebooting)=1</expression>
                             <name>System reboot is needed</name>
                             <priority>WARNING</priority>
                             <description>The reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.</description>
@@ -36,62 +50,86 @@
                     </triggers>
                 </item>
                 <item>
+                    <uuid>697fd4f080f141a49ecbca095e674804</uuid>
                     <name>Patches - all</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.patches.all</key>
-                    <delay>10m</delay>
+                    <delay>12m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
+                    <description>Get the number of all applicable patches, including security patches. Requires sudo.
+
+Expected return value:
+number indicating the number of patches.</description>
                     <triggers>
                         <trigger>
-                            <expression>{last()}&gt;0</expression>
-                            <name>Patches available</name>
+                            <uuid>d8d0211e277f44a682413aeec160f482</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.all)&gt;0</expression>
+                            <name>Package patches are available: {ITEM.VALUE} patch[es]</name>
                             <priority>INFO</priority>
                             <manual_close>YES</manual_close>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
+                    <uuid>beae4f68d7f44c71866c63534275225d</uuid>
                     <name>Patches - critical</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.patches.critical</key>
                     <delay>10m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
+                    <description>Get the number of applicable critical patches. Requires sudo.
+
+Expected return value:
+number indicating the number of critical patches.</description>
                     <triggers>
                         <trigger>
-                            <expression>{last()}&gt;0</expression>
-                            <name>Critical patches available</name>
+                            <uuid>e6397de074a644ff91abf5394ce57ef7</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.critical)&gt;0</expression>
+                            <name>Critical patches pending: {ITEM.VALUE} patch[es]</name>
                             <priority>HIGH</priority>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
+                    <uuid>892a426a8e4845f399a1661fcad122df</uuid>
                     <name>Patches - security</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.patches.security</key>
-                    <delay>10m</delay>
+                    <delay>11m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
+                    <description>Get the number of applicable security patches. Requires sudo.
+
+Expected return value:
+number indicating the number of security patches.</description>
                     <triggers>
                         <trigger>
-                            <expression>{last()}&gt;0</expression>
-                            <name>Security patches available</name>
-                            <priority>AVERAGE</priority>
+                            <uuid>47f55e5d95ba419594d73932da3d09b2</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.security)&gt;0</expression>
+                            <name>Security patches pending: {ITEM.VALUE} patch[es]</name>
+                            <priority>WARNING</priority>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
+                    <uuid>a6d5f97c0d484be9a8212065173525e4</uuid>
                     <name>Services restart</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.services.restart</key>
                     <delay>10m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
+                    <description>Get the number of services which are using meanwhile deleted files (e.g. shared libraries). These services may need to be restarted after an update. Requires sudo.
+
+Expected return value:
+number indicating the number of services.</description>
                     <triggers>
                         <trigger>
-                            <expression>{last()}&gt;0</expression>
-                            <name>Some services need to be restarted</name>
+                            <uuid>30d077982bcd40f694a3f864737e70fd</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.services.restart)&gt;0</expression>
+                            <name>Some services need to be restarted: {ITEM.VALUE} service[s]</name>
                             <priority>INFO</priority>
                             <description>There are running services which still use files and libraries deleted or updated by recent upgrades. They should be restarted to benefit from the latest updates.</description>
                             <manual_close>YES</manual_close>
@@ -99,6 +137,22 @@
                     </triggers>
                 </item>
             </items>
+            <valuemaps>
+                <valuemap>
+                    <uuid>38f892ec8c254df080be4c093c7f676e</uuid>
+                    <name>TruthValue</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>true</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>false</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
         </template>
     </templates>
 </zabbix_export>
