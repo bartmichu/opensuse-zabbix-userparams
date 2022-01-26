@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.4'
-  date: '2022-01-26T12:35:00Z'
+  date: '2022-01-26T19:53:34Z'
   groups:
     -
       uuid: 846977d1dfed4968bc5f8bdb363285bc
@@ -81,6 +81,26 @@ zabbix_export:
               expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.critical)>0'
               name: 'Critical patches pending: {ITEM.VALUE} patch[es]'
               priority: HIGH
+        -
+          uuid: 65fea3dff5324a2581e756fb48352e47
+          name: 'Patches - interactive'
+          type: ZABBIX_ACTIVE
+          key: opensuse-userparams.patches.interactive
+          delay: 13m
+          history: 14d
+          trends: 60d
+          description: |
+            Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed. Requires sudo.
+            
+            Expected return value:
+            number indicating the number of interactive patches.
+          triggers:
+            -
+              uuid: 0defe39710b044ffb44e7884d97a1a92
+              expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.interactive)>0'
+              name: 'Interactive patches pending: {ITEM.VALUE} patch[es]'
+              priority: WARNING
+              manual_close: 'YES'
         -
           uuid: 892a426a8e4845f399a1661fcad122df
           name: 'Patches - security'

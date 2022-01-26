@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.4</version>
-    <date>2022-01-26T12:35:02Z</date>
+    <date>2022-01-26T19:53:36Z</date>
     <groups>
         <group>
             <uuid>846977d1dfed4968bc5f8bdb363285bc</uuid>
@@ -89,6 +89,28 @@ number indicating the number of critical patches.</description>
                             <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.critical)&gt;0</expression>
                             <name>Critical patches pending: {ITEM.VALUE} patch[es]</name>
                             <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>65fea3dff5324a2581e756fb48352e47</uuid>
+                    <name>Patches - interactive</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.patches.interactive</key>
+                    <delay>13m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <description>Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed. Requires sudo.
+
+Expected return value:
+number indicating the number of interactive patches.</description>
+                    <triggers>
+                        <trigger>
+                            <uuid>0defe39710b044ffb44e7884d97a1a92</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.interactive)&gt;0</expression>
+                            <name>Interactive patches pending: {ITEM.VALUE} patch[es]</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
                         </trigger>
                     </triggers>
                 </item>
