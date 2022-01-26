@@ -57,6 +57,12 @@
 
   Expected return value: number indicating the number of critical patches.
 
+- ```opensuse-userparams.patches.interactive```
+
+  Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed. Requires sudo.
+
+  Expected return value: number indicating the number of interactive patches.
+
 ## Template triggers
 
 - Package patches are available: {ITEM.VALUE} patch[es]
@@ -64,6 +70,8 @@
 - Security patches pending: {ITEM.VALUE} patch[es]
 
 - Critical patches pending: {ITEM.VALUE} patch[es]
+
+- Interactive patches pending: {ITEM.VALUE} patch[es]
 
 - Some services need to be restarted: {ITEM.VALUE} service[s]
 

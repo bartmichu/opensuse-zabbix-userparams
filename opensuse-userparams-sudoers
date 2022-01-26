@@ -1,11 +1,13 @@
 Defaults:zabbix !requiretty
 
 Defaults!LIST_PROCESSES !logfile, !syslog, !pam_session
+Defaults!LIST_PATCHES !logfile, !syslog, !pam_session
 Defaults!LIST_SECURITY_PATCHES !logfile, !syslog, !pam_session
 Defaults!LIST_CRITICAL_PATCHES !logfile, !syslog, !pam_session
 
 Cmnd_Alias LIST_PROCESSES = /usr/bin/zypper ps -sss
+Cmnd_Alias LIST_PATCHES = /usr/bin/zypper --no-refresh list-patches
 Cmnd_Alias LIST_SECURITY_PATCHES = /usr/bin/zypper --no-refresh list-patches --category security
 Cmnd_Alias LIST_CRITICAL_PATCHES = /usr/bin/zypper --no-refresh list-patches --severity critical
 
-zabbix ALL=(root) NOPASSWD: LIST_PROCESSES, LIST_SECURITY_PATCHES, LIST_CRITICAL_PATCHES
+zabbix ALL=(root) NOPASSWD: LIST_PROCESSES, LIST_PATCHES, LIST_SECURITY_PATCHES, LIST_CRITICAL_PATCHES
