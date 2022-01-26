@@ -23,35 +23,35 @@
 
 ## Keys
 
-- opensuse-userparams.userparams-version
+- ```opensuse-userparams.userparams-version```
 
   Return version number of this file. Used internally within the template.
 
-- opensuse-userparams.needs-rebooting
+- ```opensuse-userparams.needs-rebooting```
 
   Check if the reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.
 
   Expected return value: ```1``` - reboot is needed, ```2``` - reboot is not needed.
 
-- opensuse-userparams.services.restart
+- ```opensuse-userparams.services.restart```
 
   Get the number of services which are using meanwhile deleted files (e.g. shared libraries). These services may need to be restarted after an update. Requires sudo.
 
   Expected return value: number indicating the number of services.
 
-- opensuse-userparams.patches.all
+- ```opensuse-userparams.patches.all```
 
   Get the number of all applicable patches, including security patches. Requires sudo.
 
   Expected return value: number indicating the number of patches.
 
-- opensuse-userparams.patches.security
+- ```opensuse-userparams.patches.security```
 
   Get the number of applicable security patches. Requires sudo.
 
   Expected return value: number indicating the number of security patches.
 
-- opensuse-userparams.patches.critical
+- ```opensuse-userparams.patches.critical```
 
   Get the number of applicable critical patches. Requires sudo.
 
@@ -69,6 +69,6 @@
 
   There are running services which still use files and libraries deleted or updated by recent upgrades. They should be restarted to benefit from the latest updates.
 
-- System reboot is required
+- System reboot is needed
 
   The reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.
