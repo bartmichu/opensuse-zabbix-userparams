@@ -2,23 +2,23 @@
 
 ## Usage
 
-- Copy userparams file (```opensuse-userparams.conf```) to a directory included in your Zabbix Agent configuration file, e.g. ```/etc/zabbix/zabbix_agentd.d/```
+- Copy userparams file (```opensuse-userparams.conf```) to a directory included in your Zabbix Agent configuration file, e.g. ```/etc/zabbix/zabbix_agentd.d/``` or ```/etc/zabbix/zabbix_agent2.d/```
 - Set userparams file owner and group (```chown root:zabbix opensuse-userparams.conf```)
 - Set userparams file mode (```chmod 0440 opensuse-userparams.conf```)
 - Copy corresponding sudoers file (```opensuse-userparams-sudoers```) to ```/etc/sudoers.d/``` directory
 - Set sudoers file mode (```chmod 0440 /etc/sudoers.d/opensuse-userparams-sudoers```)
-- Restart Zabbix Agent (```systemctl restart zabbix-agent.service```)
+- Restart Zabbix Agent (```systemctl restart zabbix-agent.service``` or ```systemctl restart zabbix-agent2.service```)
 - Import corresponding template file (```opensuse-userparams-template.yaml```) on Zabbix Server
 - Link ```Template opensuse-userparams by Zabbix agent active``` template to selected hosts
-- You may need to increase the Timeout value in your Zabbix Agent configuration file, e.g. ```Timeout=30```
+- You may need to increase the ```Timeout``` value in your Zabbix Agent configuration file, e.g. ```Timeout=30```
 
 ## System requirements
 
-- ```sudo``` package installed and configured
+- sudo (installed by default on Leap 15.3)
 
 ## Tested on
 
-- Zabbix Agent 5.x on openSUSE Leap 15.3
+- Zabbix Agent and Zabbix Agent 2 on openSUSE Leap 15.3
 - Zabbix Server 5.x
 
 ## Keys
