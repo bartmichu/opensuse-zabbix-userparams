@@ -88,3 +88,7 @@
 - System reboot is needed
 
   The reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.
+
+- System reboot is requested
+
+  System reboot is requested from reboot manager.
