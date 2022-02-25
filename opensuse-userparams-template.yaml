@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.4'
-  date: '2022-01-26T19:53:34Z'
+  date: '2022-02-25T20:47:43Z'
   groups:
     -
       uuid: 846977d1dfed4968bc5f8bdb363285bc
@@ -47,7 +47,7 @@ zabbix_export:
           name: 'Patches - all'
           type: ZABBIX_ACTIVE
           key: opensuse-userparams.patches.all
-          delay: 12m
+          delay: 13m
           history: 14d
           trends: 60d
           description: |
@@ -67,7 +67,7 @@ zabbix_export:
           name: 'Patches - critical'
           type: ZABBIX_ACTIVE
           key: opensuse-userparams.patches.critical
-          delay: 10m
+          delay: 11m
           history: 14d
           trends: 60d
           description: |
@@ -86,7 +86,7 @@ zabbix_export:
           name: 'Patches - interactive'
           type: ZABBIX_ACTIVE
           key: opensuse-userparams.patches.interactive
-          delay: 13m
+          delay: 14m
           history: 14d
           trends: 60d
           description: |
@@ -106,7 +106,7 @@ zabbix_export:
           name: 'Patches - security'
           type: ZABBIX_ACTIVE
           key: opensuse-userparams.patches.security
-          delay: 11m
+          delay: 12m
           history: 14d
           trends: 60d
           description: |
@@ -120,6 +120,31 @@ zabbix_export:
               expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.security)>0'
               name: 'Security patches pending: {ITEM.VALUE} patch[es]'
               priority: WARNING
+        -
+          uuid: 835c7f611a5f4149a846e52ac638ca8a
+          name: 'Reboot requested'
+          type: ZABBIX_ACTIVE
+          key: opensuse-userparams.reboot-requested
+          delay: 10m
+          history: 14d
+          trends: 60d
+          description: |
+            Check if the system reboot is requested from reboot manager.
+            Requires rebootmgr and sudo.
+            
+            Expected return value:
+            1 - reboot requested
+            2 - reboot not requested.
+          valuemap:
+            name: TruthValue
+          triggers:
+            -
+              uuid: ab485e4f6d554a918f8ca5e23c7d384b
+              expression: 'last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.reboot-requested)=1'
+              name: 'System reboot is requested'
+              priority: WARNING
+              description: 'System reboot is requested from reboot manager.'
+              manual_close: 'YES'
         -
           uuid: a6d5f97c0d484be9a8212065173525e4
           name: 'Services restart'

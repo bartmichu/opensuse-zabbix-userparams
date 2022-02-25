@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.4</version>
-    <date>2022-01-26T19:53:36Z</date>
+    <date>2022-02-25T20:47:47Z</date>
     <groups>
         <group>
             <uuid>846977d1dfed4968bc5f8bdb363285bc</uuid>
@@ -54,7 +54,7 @@ Expected return value:
                     <name>Patches - all</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.patches.all</key>
-                    <delay>12m</delay>
+                    <delay>13m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
                     <description>Get the number of all applicable patches, including security patches. Requires sudo.
@@ -76,7 +76,7 @@ number indicating the number of patches.</description>
                     <name>Patches - critical</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.patches.critical</key>
-                    <delay>10m</delay>
+                    <delay>11m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
                     <description>Get the number of applicable critical patches. Requires sudo.
@@ -97,7 +97,7 @@ number indicating the number of critical patches.</description>
                     <name>Patches - interactive</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.patches.interactive</key>
-                    <delay>13m</delay>
+                    <delay>14m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
                     <description>Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed. Requires sudo.
@@ -119,7 +119,7 @@ number indicating the number of interactive patches.</description>
                     <name>Patches - security</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>opensuse-userparams.patches.security</key>
-                    <delay>11m</delay>
+                    <delay>12m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
                     <description>Get the number of applicable security patches. Requires sudo.
@@ -132,6 +132,34 @@ number indicating the number of security patches.</description>
                             <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.security)&gt;0</expression>
                             <name>Security patches pending: {ITEM.VALUE} patch[es]</name>
                             <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>835c7f611a5f4149a846e52ac638ca8a</uuid>
+                    <name>Reboot requested</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.reboot-requested</key>
+                    <delay>10m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <description>Check if the system reboot is requested from reboot manager.
+Requires rebootmgr and sudo.
+
+Expected return value:
+1 - reboot requested
+2 - reboot not requested.</description>
+                    <valuemap>
+                        <name>TruthValue</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>ab485e4f6d554a918f8ca5e23c7d384b</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.reboot-requested)=1</expression>
+                            <name>System reboot is requested</name>
+                            <priority>WARNING</priority>
+                            <description>System reboot is requested from reboot manager.</description>
+                            <manual_close>YES</manual_close>
                         </trigger>
                     </triggers>
                 </item>
