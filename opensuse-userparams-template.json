@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.4",
-        "date": "2022-02-25T20:47:51Z",
+        "date": "2022-02-26T13:50:03Z",
         "groups": [
             {
                 "uuid": "846977d1dfed4968bc5f8bdb363285bc",
@@ -20,6 +20,29 @@
                     }
                 ],
                 "items": [
+                    {
+                        "uuid": "8b13a4b182a249efb3c081855cfd62b5",
+                        "name": "Graceful shutdown",
+                        "type": "ZABBIX_ACTIVE",
+                        "key": "opensuse-userparams.graceful-shutdown",
+                        "delay": "10m",
+                        "history": "14d",
+                        "trends": "60d",
+                        "description": "Check if system was shut down gracefully before current boot.\n\nExpected return value:\n1 - ungraceful shutdown\n2 - graceful shutdown",
+                        "valuemap": {
+                            "name": "TruthValue"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "80f038fac78d4e5cbb3ef13c9f879706",
+                                "expression": "last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.graceful-shutdown)<>2",
+                                "name": "Ungraceful shutdown",
+                                "priority": "WARNING",
+                                "description": "System was not shut down gracefully before current boot.",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
                     {
                         "uuid": "417a73e6d2f6451b98f6f25e6bfb21c9",
                         "name": "Reboot needed",
@@ -125,7 +148,7 @@
                         "delay": "10m",
                         "history": "14d",
                         "trends": "60d",
-                        "description": "Check if the system reboot is requested from reboot manager.\nRequires rebootmgr and sudo.\n\nExpected return value:\n1 - reboot requested\n2 - reboot not requested.",
+                        "description": "Check if system reboot is requested from reboot manager.\nRequires rebootmgr and sudo.\n\nExpected return value:\n1 - reboot requested\n2 - reboot not requested.",
                         "valuemap": {
                             "name": "TruthValue"
                         },

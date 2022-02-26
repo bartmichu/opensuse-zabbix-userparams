@@ -36,7 +36,7 @@
 
 - ```opensuse-userparams.reboot-requested```
 
-  Check if the system reboot is requested from reboot manager.
+  Check if system reboot is requested from reboot manager.
   Requires rebootmgr and sudo.
 
   Expected return value: 1 - reboot requested, 2 - reboot not requested.
@@ -71,6 +71,12 @@
 
   Expected return value: number indicating the number of interactive patches.
 
+- ```opensuse-userparams.graceful-shutdown```
+
+  Check if system was shut down gracefully before current boot.
+
+  Expected return value: 1 - ungraceful shutdown, 2 - graceful shutdown.
+
 ## Template triggers
 
 - Package patches are available: {ITEM.VALUE} patch[es]
@@ -92,3 +98,7 @@
 - System reboot is requested
 
   System reboot is requested from reboot manager.
+
+- Ungraceful shutdown
+
+  System was not shut down gracefully before current boot.

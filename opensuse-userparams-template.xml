@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.4</version>
-    <date>2022-02-25T20:47:47Z</date>
+    <date>2022-02-26T13:50:02Z</date>
     <groups>
         <group>
             <uuid>846977d1dfed4968bc5f8bdb363285bc</uuid>
@@ -22,6 +22,33 @@ Corresponding user parameters file and installation instructions can be found at
                 </group>
             </groups>
             <items>
+                <item>
+                    <uuid>8b13a4b182a249efb3c081855cfd62b5</uuid>
+                    <name>Graceful shutdown</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.graceful-shutdown</key>
+                    <delay>10m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <description>Check if system was shut down gracefully before current boot.
+
+Expected return value:
+1 - ungraceful shutdown
+2 - graceful shutdown</description>
+                    <valuemap>
+                        <name>TruthValue</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>80f038fac78d4e5cbb3ef13c9f879706</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.graceful-shutdown)&lt;&gt;2</expression>
+                            <name>Ungraceful shutdown</name>
+                            <priority>WARNING</priority>
+                            <description>System was not shut down gracefully before current boot.</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
                 <item>
                     <uuid>417a73e6d2f6451b98f6f25e6bfb21c9</uuid>
                     <name>Reboot needed</name>
@@ -143,7 +170,7 @@ number indicating the number of security patches.</description>
                     <delay>10m</delay>
                     <history>14d</history>
                     <trends>60d</trends>
-                    <description>Check if the system reboot is requested from reboot manager.
+                    <description>Check if system reboot is requested from reboot manager.
 Requires rebootmgr and sudo.
 
 Expected return value:
