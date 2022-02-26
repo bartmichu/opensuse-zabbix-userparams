@@ -14,8 +14,8 @@
 
 ## System requirements
 
-- ```sudo``` package installed (installed by default on Leap 15.3)
-- ```rebootmgr``` package installed and ```rebootmgr.service``` running for ```reboot-requested``` user parameter
+- ```sudo``` package installed (installed by default on Leap 15.3) for some checks
+- ```rebootmgr``` package installed and ```rebootmgr.service``` running for some checks
 
 ## Tested on
 
@@ -28,13 +28,13 @@
 
   Return version number of this file. Used internally within the template.
 
-- ```opensuse-userparams.needs-rebooting```
+- ```opensuse-userparams.reboot.needed```
 
   Check if the reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.
 
   Expected return value: ```1``` - reboot is needed, ```2``` - reboot is not needed.
 
-- ```opensuse-userparams.reboot-requested```
+- ```opensuse-userparams.reboot.requested```
 
   Check if system reboot is requested from reboot manager.
   Requires rebootmgr and sudo.

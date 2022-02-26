@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.4",
-        "date": "2022-02-26T13:50:03Z",
+        "date": "2022-02-26T16:32:15Z",
         "groups": [
             {
                 "uuid": "846977d1dfed4968bc5f8bdb363285bc",
@@ -39,29 +39,6 @@
                                 "name": "Ungraceful shutdown",
                                 "priority": "WARNING",
                                 "description": "System was not shut down gracefully before current boot.",
-                                "manual_close": "YES"
-                            }
-                        ]
-                    },
-                    {
-                        "uuid": "417a73e6d2f6451b98f6f25e6bfb21c9",
-                        "name": "Reboot needed",
-                        "type": "ZABBIX_ACTIVE",
-                        "key": "opensuse-userparams.needs-rebooting",
-                        "delay": "10m",
-                        "history": "14d",
-                        "trends": "60d",
-                        "description": "Check if the reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that a system reboot is needed.\n\nExpected return value:\n1 - reboot is needed\n2 - reboot is not needed.",
-                        "valuemap": {
-                            "name": "TruthValue"
-                        },
-                        "triggers": [
-                            {
-                                "uuid": "9be704bfc0a34a88b066834833830927",
-                                "expression": "last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.needs-rebooting)=1",
-                                "name": "System reboot is needed",
-                                "priority": "WARNING",
-                                "description": "The reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.",
                                 "manual_close": "YES"
                             }
                         ]
@@ -141,10 +118,33 @@
                         ]
                     },
                     {
+                        "uuid": "417a73e6d2f6451b98f6f25e6bfb21c9",
+                        "name": "Reboot needed",
+                        "type": "ZABBIX_ACTIVE",
+                        "key": "opensuse-userparams.reboot.needed",
+                        "delay": "10m",
+                        "history": "14d",
+                        "trends": "60d",
+                        "description": "Check if the reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that a system reboot is needed.\n\nExpected return value:\n1 - reboot is needed\n2 - reboot is not needed.",
+                        "valuemap": {
+                            "name": "TruthValue"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "9be704bfc0a34a88b066834833830927",
+                                "expression": "last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.reboot.needed)=1",
+                                "name": "System reboot is needed",
+                                "priority": "WARNING",
+                                "description": "The reboot-needed flag was set by a previous update or install of a core library or service. This flag indicates that reboot is required to ensure that your system benefits from these updates.",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
                         "uuid": "835c7f611a5f4149a846e52ac638ca8a",
                         "name": "Reboot requested",
                         "type": "ZABBIX_ACTIVE",
-                        "key": "opensuse-userparams.reboot-requested",
+                        "key": "opensuse-userparams.reboot.requested",
                         "delay": "10m",
                         "history": "14d",
                         "trends": "60d",
@@ -155,7 +155,7 @@
                         "triggers": [
                             {
                                 "uuid": "ab485e4f6d554a918f8ca5e23c7d384b",
-                                "expression": "last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.reboot-requested)=1",
+                                "expression": "last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.reboot.requested)=1",
                                 "name": "System reboot is requested",
                                 "priority": "WARNING",
                                 "description": "System reboot is requested from reboot manager.",
