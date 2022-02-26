@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.4",
-        "date": "2022-02-26T16:32:15Z",
+        "date": "2022-02-26T16:48:27Z",
         "groups": [
             {
                 "uuid": "846977d1dfed4968bc5f8bdb363285bc",
@@ -51,7 +51,7 @@
                         "delay": "13m",
                         "history": "14d",
                         "trends": "60d",
-                        "description": "Get the number of all applicable patches, including security patches. Requires sudo.\n\nExpected return value:\nnumber indicating the number of patches.",
+                        "description": "Get the number of all applicable patches, including security patches.\n\nExpected return value:\nnumber indicating the number of patches.",
                         "triggers": [
                             {
                                 "uuid": "d8d0211e277f44a682413aeec160f482",
@@ -70,7 +70,7 @@
                         "delay": "11m",
                         "history": "14d",
                         "trends": "60d",
-                        "description": "Get the number of applicable critical patches. Requires sudo.\n\nExpected return value:\nnumber indicating the number of critical patches.",
+                        "description": "Get the number of applicable critical patches.\n\nExpected return value:\nnumber indicating the number of critical patches.",
                         "triggers": [
                             {
                                 "uuid": "e6397de074a644ff91abf5394ce57ef7",
@@ -88,7 +88,7 @@
                         "delay": "14m",
                         "history": "14d",
                         "trends": "60d",
-                        "description": "Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed. Requires sudo.\n\nExpected return value:\nnumber indicating the number of interactive patches.",
+                        "description": "Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed.\n\nExpected return value:\nnumber indicating the number of interactive patches.",
                         "triggers": [
                             {
                                 "uuid": "0defe39710b044ffb44e7884d97a1a92",
@@ -107,7 +107,7 @@
                         "delay": "12m",
                         "history": "14d",
                         "trends": "60d",
-                        "description": "Get the number of applicable security patches. Requires sudo.\n\nExpected return value:\nnumber indicating the number of security patches.",
+                        "description": "Get the number of applicable security patches.\n\nExpected return value:\nnumber indicating the number of security patches.",
                         "triggers": [
                             {
                                 "uuid": "47f55e5d95ba419594d73932da3d09b2",
@@ -148,7 +148,7 @@
                         "delay": "10m",
                         "history": "14d",
                         "trends": "60d",
-                        "description": "Check if system reboot is requested from reboot manager.\nRequires rebootmgr and sudo.\n\nExpected return value:\n1 - reboot requested\n2 - reboot not requested.",
+                        "description": "Check if system reboot is requested from reboot manager.\nRequires sudo and rebootmgr.\n\nExpected return value:\n1 - reboot requested\n2 - reboot not requested.",
                         "valuemap": {
                             "name": "TruthValue"
                         },

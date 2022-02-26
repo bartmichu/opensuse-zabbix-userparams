@@ -37,7 +37,7 @@
 - ```opensuse-userparams.reboot.requested```
 
   Check if system reboot is requested from reboot manager.
-  Requires rebootmgr and sudo.
+  Requires sudo and rebootmgr.
 
   Expected return value: 1 - reboot requested, 2 - reboot not requested.
 
@@ -49,25 +49,25 @@
 
 - ```opensuse-userparams.patches.all```
 
-  Get the number of all applicable patches, including security patches. Requires sudo.
+  Get the number of all applicable patches, including security patches.
 
   Expected return value: number indicating the number of patches.
 
 - ```opensuse-userparams.patches.security```
 
-  Get the number of applicable security patches. Requires sudo.
+  Get the number of applicable security patches.
 
   Expected return value: number indicating the number of security patches.
 
 - ```opensuse-userparams.patches.critical```
 
-  Get the number of applicable critical patches. Requires sudo.
+  Get the number of applicable critical patches.
 
   Expected return value: number indicating the number of critical patches.
 
 - ```opensuse-userparams.patches.interactive```
 
-  Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed. Requires sudo.
+  Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed.
 
   Expected return value: number indicating the number of interactive patches.
 

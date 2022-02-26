@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.4'
-  date: '2022-02-26T16:32:12Z'
+  date: '2022-02-26T16:48:24Z'
   groups:
     -
       uuid: 846977d1dfed4968bc5f8bdb363285bc
@@ -51,7 +51,7 @@ zabbix_export:
           history: 14d
           trends: 60d
           description: |
-            Get the number of all applicable patches, including security patches. Requires sudo.
+            Get the number of all applicable patches, including security patches.
             
             Expected return value:
             number indicating the number of patches.
@@ -71,7 +71,7 @@ zabbix_export:
           history: 14d
           trends: 60d
           description: |
-            Get the number of applicable critical patches. Requires sudo.
+            Get the number of applicable critical patches.
             
             Expected return value:
             number indicating the number of critical patches.
@@ -90,7 +90,7 @@ zabbix_export:
           history: 14d
           trends: 60d
           description: |
-            Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed. Requires sudo.
+            Get the number of applicable interactive patches. Patches are interactive when they need reboot, contain a message, or update a package whose license needs to be confirmed.
             
             Expected return value:
             number indicating the number of interactive patches.
@@ -110,7 +110,7 @@ zabbix_export:
           history: 14d
           trends: 60d
           description: |
-            Get the number of applicable security patches. Requires sudo.
+            Get the number of applicable security patches.
             
             Expected return value:
             number indicating the number of security patches.
@@ -154,7 +154,7 @@ zabbix_export:
           trends: 60d
           description: |
             Check if system reboot is requested from reboot manager.
-            Requires rebootmgr and sudo.
+            Requires sudo and rebootmgr.
             
             Expected return value:
             1 - reboot requested
