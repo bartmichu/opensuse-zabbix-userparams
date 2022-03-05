@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.4</version>
-    <date>2022-02-26T16:48:25Z</date>
+    <date>2022-03-05T13:56:23Z</date>
     <groups>
         <group>
             <uuid>846977d1dfed4968bc5f8bdb363285bc</uuid>
@@ -65,7 +65,7 @@ number indicating the number of patches.</description>
                         <trigger>
                             <uuid>d8d0211e277f44a682413aeec160f482</uuid>
                             <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.all)&gt;0</expression>
-                            <name>Package patches are available: {ITEM.VALUE} patch[es]</name>
+                            <name>Patches are available: {ITEM.VALUE} patch[es]</name>
                             <priority>INFO</priority>
                             <manual_close>YES</manual_close>
                         </trigger>
@@ -209,6 +209,28 @@ number indicating the number of services.</description>
                             <name>Some services need to be restarted: {ITEM.VALUE} service[s]</name>
                             <priority>INFO</priority>
                             <description>There are running services which still use files and libraries deleted or updated by recent upgrades. They should be restarted to benefit from the latest updates.</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>a4e712286e89485aa2107be89a105d68</uuid>
+                    <name>Updates - all</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>opensuse-userparams.updates.all</key>
+                    <delay>15m</delay>
+                    <history>14d</history>
+                    <trends>60d</trends>
+                    <description>Get the number of all applicable updates.
+
+Expected return value:
+number indicating the number of updates.</description>
+                    <triggers>
+                        <trigger>
+                            <uuid>9e443b9338b44db9a7db2120e8af442f</uuid>
+                            <expression>last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.updates.all)&gt;0</expression>
+                            <name>Updates are available: {ITEM.VALUE} update[s]</name>
+                            <priority>INFO</priority>
                             <manual_close>YES</manual_close>
                         </trigger>
                     </triggers>

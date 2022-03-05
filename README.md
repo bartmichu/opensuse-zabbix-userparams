@@ -47,6 +47,11 @@
 
   Expected return value: number indicating the number of services.
 
+- ```opensuse-userparams.updates.all```
+  Get the number of all available updates.
+
+  Expected return value: number indicating the number of updates.
+
 - ```opensuse-userparams.patches.all```
 
   Get the number of all applicable patches, including security patches.
@@ -79,7 +84,9 @@
 
 ## Template triggers
 
-- Package patches are available: {ITEM.VALUE} patch[es]
+- Updates are available: {ITEM.VALUE} update[s]
+
+- Patches are available: {ITEM.VALUE} patch[es]
 
 - Security patches pending: {ITEM.VALUE} patch[es]
 

@@ -1,7 +1,7 @@
 {
     "zabbix_export": {
         "version": "5.4",
-        "date": "2022-02-26T16:48:27Z",
+        "date": "2022-03-05T13:56:25Z",
         "groups": [
             {
                 "uuid": "846977d1dfed4968bc5f8bdb363285bc",
@@ -56,7 +56,7 @@
                             {
                                 "uuid": "d8d0211e277f44a682413aeec160f482",
                                 "expression": "last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.patches.all)>0",
-                                "name": "Package patches are available: {ITEM.VALUE} patch[es]",
+                                "name": "Patches are available: {ITEM.VALUE} patch[es]",
                                 "priority": "INFO",
                                 "manual_close": "YES"
                             }
@@ -179,6 +179,25 @@
                                 "name": "Some services need to be restarted: {ITEM.VALUE} service[s]",
                                 "priority": "INFO",
                                 "description": "There are running services which still use files and libraries deleted or updated by recent upgrades. They should be restarted to benefit from the latest updates.",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "a4e712286e89485aa2107be89a105d68",
+                        "name": "Updates - all",
+                        "type": "ZABBIX_ACTIVE",
+                        "key": "opensuse-userparams.updates.all",
+                        "delay": "15m",
+                        "history": "14d",
+                        "trends": "60d",
+                        "description": "Get the number of all applicable updates.\n\nExpected return value:\nnumber indicating the number of updates.",
+                        "triggers": [
+                            {
+                                "uuid": "9e443b9338b44db9a7db2120e8af442f",
+                                "expression": "last(/Template opensuse-userparams by Zabbix agent active/opensuse-userparams.updates.all)>0",
+                                "name": "Updates are available: {ITEM.VALUE} update[s]",
+                                "priority": "INFO",
                                 "manual_close": "YES"
                             }
                         ]
