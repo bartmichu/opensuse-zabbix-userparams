@@ -3,7 +3,7 @@ Defaults:zabbix !requiretty
 Defaults!LIST_PROCESSES !logfile, !syslog, !pam_session
 Defaults!REBOOTMGRD_STATUS !logfile, !syslog, !pam_session
 
-Cmnd_Alias LIST_PROCESSES = /usr/bin/zypper --quiet ps -sss
+Cmnd_Alias LIST_PROCESSES = /usr/bin/zypper --non-interactive --quiet ps -sss
 Cmnd_Alias REBOOTMGRD_STATUS = /usr/sbin/rebootmgrctl status --quiet
 
 zabbix ALL=(root) NOPASSWD: LIST_PROCESSES, REBOOTMGRD_STATUS
